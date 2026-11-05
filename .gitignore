@@ -1,0 +1,29 @@
+# Unity caches and local settings
+/PlatformerGame/[Ll]ibrary/
+/PlatformerGame/[Tt]emp/
+/PlatformerGame/[Oo]bj/
+/PlatformerGame/[Ll]ogs/
+/PlatformerGame/[Uu]ser[Ss]ettings/
+
+# Generated builds and memory captures
+/PlatformerGame/[Bb]uild/
+/PlatformerGame/[Bb]uilds/
+/PlatformerGame/[Mm]emoryCaptures/
+
+# Local IDE settings
+.vs/
+.vscode/
+.idea/
+
+# Unity-generated IDE project files
+/PlatformerGame/*.csproj
+/PlatformerGame/*.unityproj
+/PlatformerGame/*.user
+/PlatformerGame/*.userprefs
+/PlatformerGame/*.pidb
+/PlatformerGame/*.booproj
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
