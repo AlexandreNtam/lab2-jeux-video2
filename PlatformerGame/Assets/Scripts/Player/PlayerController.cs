@@ -16,7 +16,6 @@ namespace Player
         private bool isChargingJump;
 
         [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip jumpSound;
 
         private bool isBlockedByWall = false;
 
@@ -95,9 +94,9 @@ namespace Player
 
         private void PlayJumpSound()
         {
-            if (audioSource != null && jumpSound != null)
+            if (audioSource != null)
             {
-                audioSource.PlayOneShot(jumpSound);
+                audioSource.PlayOneShot(SoundManager.Instance.PlayerJump);
             }
         }
 
