@@ -11,6 +11,7 @@ namespace Player
         private Vector2 moveValue;
         private bool jumpTriggered;
         private bool jumpHeld;
+        private bool readingInputs = true;
 
         public Vector2 MoveInput => moveValue;
         public bool JumpTriggered => jumpTriggered;
@@ -24,6 +25,11 @@ namespace Player
 
         private void Update()
         {
+            if (!readingInputs)
+            {
+                return;
+            }
+
             if (moveAction != null) moveValue = moveAction.ReadValue<Vector2>();
 
             if (jumpAction != null && jumpAction.triggered) jumpTriggered = true;
@@ -31,5 +37,13 @@ namespace Player
         }
 
         public void ResetJumpTrigger() => jumpTriggered = false;
+
+        public void StopReading()
+        {
+            readingInputs = false;
+            moveValue = Vector2.zero;
+            jumpTriggered = false;
+            jumpHeld = false;
+        }
     }
 }

@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: -5076177498168445174}
   - component: {fileID: 6072703733149658191}
   - component: {fileID: 2297987951028421830}
+  - component: {fileID: 2681672910175940074}
+  - component: {fileID: 2675574918535549352}
   - component: {fileID: 6851638173963552679}
   m_Layer: 0
   m_Name: Player
@@ -297,6 +299,30 @@ MonoBehaviour:
   minJumpVelocity: 3
   coyoteTimeMax: 0.2
   audioSource: {fileID: 0}
+--- !u!114 &2681672910175940074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324713315349257504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb158e3ec5f8a997994478c75fab111a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerBonus
+--- !u!114 &2675574918535549352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324713315349257504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5adbc9adedd3e71baa4e9a4640cfdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerState
 --- !u!82 &6851638173963552679
 AudioSource:
   m_ObjectHideFlags: 0
