@@ -32,6 +32,7 @@ namespace Player
 
             if (moveAction != null) moveValue = moveAction.ReadValue<Vector2>();
 
+            // https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_triggered
             if (jumpAction != null && jumpAction.triggered) jumpTriggered = true;
             if (jumpAction != null) jumpHeld = jumpAction.IsPressed();
         }

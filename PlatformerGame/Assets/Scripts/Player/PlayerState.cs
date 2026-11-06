@@ -46,6 +46,7 @@ namespace Player
             if (other.gameObject.tag == "Monster")
             {
                 isDead = true;
+                // https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/transform/localscale
                 deathStartScale = transform.localScale;
 
                 GameManager.Instance.PlayerDie();

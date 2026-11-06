@@ -30,7 +30,6 @@ namespace Player
 
         private void Update()
         {
-            // Gestion du Coyote Time
             if (groundCheck != null && groundCheck.IsGrounded())
             {
                 coyoteTimeCounter = coyoteTimeMax;
@@ -40,7 +39,6 @@ namespace Player
                 coyoteTimeCounter -= Time.deltaTime;
             }
 
-            // Logique du saut chargé
             HandleJumpInput();
         }
 
@@ -82,6 +80,8 @@ namespace Player
                 if (inputReader.JumpHeld && jumpPressTimer < 0.25f)
                 {
                     jumpPressTimer += Time.deltaTime;
+                    //Lerp calcule une vitesse entre le minimum et le maximum selon la charge.
+                    // Source : https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/mathf/lerp
                     float additionalVelocity = Mathf.Lerp(minJumpVelocity, maxJumpVelocity, jumpPressTimer / 0.25f);
                     rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x, additionalVelocity);
                 }
@@ -119,6 +119,7 @@ namespace Player
 
         private void OnCollisionExit2D(Collision2D collision)
         {
+            // https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/collision2d/collider
             if (collision.collider == wallCollider)
             {
                 isBlockedByWall = false;
@@ -130,6 +131,8 @@ namespace Player
         {
             if (groundCheck != null && !groundCheck.IsGrounded())
             {
+                // https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/gameobject/layer
+                // https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/layermask/nametolayer
                 if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     isBlockedByWall = true;
