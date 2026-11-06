@@ -18,6 +18,7 @@ namespace Player
         [SerializeField] private AudioSource audioSource;
 
         private bool isBlockedByWall = false;
+        private Collider2D wallCollider;
 
         private void Start()
         {
@@ -45,6 +46,12 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (groundCheck.IsGrounded())
+            {
+                isBlockedByWall = false;
+                wallCollider = null;
+            }
+
             float targetSpeed;
 
             if (isBlockedByWall)
@@ -112,7 +119,11 @@ namespace Player
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            isBlockedByWall = false;
+            if (collision.collider == wallCollider)
+            {
+                isBlockedByWall = false;
+                wallCollider = null;
+            }
         }
 
         private void CheckWallCollision(Collision2D collision)
@@ -122,6 +133,8 @@ namespace Player
                 if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     isBlockedByWall = true;
+                    wallCollider = collision.collider;
+                    rigidbody2d.linearVelocity = new Vector2(0f, rigidbody2d.linearVelocity.y);
                 }
             }
         }

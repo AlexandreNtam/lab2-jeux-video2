@@ -9,6 +9,7 @@ namespace Player
         private PlayerBonus bonus;
         private AudioSource audioSource;
 
+        private bool finished;
         private bool isDead;
         private bool restartRequested;
         private float deathTime;
@@ -26,20 +27,38 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (isDead || other.gameObject.tag != "Monster")
+            if (finished)
             {
                 return;
             }
 
-            isDead = true;
-            deathStartScale = transform.localScale;
+            if (other.gameObject.tag != "Monster"
+                && other.gameObject.tag != "Exit")
+            {
+                return;
+            }
 
+            finished = true;
             inputReader.StopReading();
             rigidbody2d.linearVelocity = Vector2.zero;
             bonus.StopCountdown();
 
-            GameManager.Instance.PlayerDie();
-            audioSource.PlayOneShot(SoundManager.Instance.PlayerKilled);
+            if (other.gameObject.tag == "Monster")
+            {
+                isDead = true;
+                deathStartScale = transform.localScale;
+
+                GameManager.Instance.PlayerDie();
+                audioSource.PlayOneShot(SoundManager.Instance.PlayerKilled);
+            }
+            else
+            {
+                GameManager.Instance.AddScore(bonus.GetBonus());
+
+                audioSource.PlayOneShot(SoundManager.Instance.ExitReached);
+
+                GameManager.Instance.StartNextlevel(2f);
+            }
         }
 
         private void Update()
